@@ -1,5 +1,5 @@
 package com.example.dao;
 
-public class HelloDao {
-
+public interface HelloDao {
+	public String getHello();
 }
