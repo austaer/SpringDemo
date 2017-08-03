@@ -17,10 +17,6 @@ public class DBInitializer {
 	@Autowired
 	private DataSource dataSource;
 
-	private String getTable() {
-		return "CREATE TABLE customer(id Integer Primary key, name varchar(50) not null, address text)";
-
-	}
 
 	@PostConstruct
 	public void initialize() {
@@ -29,7 +25,11 @@ public class DBInitializer {
 			Statement stmt = connection.createStatement();
 			stmt = connection.createStatement();
 			stmt.executeUpdate("DROP TABLE IF EXISTS customer");
-			stmt.executeUpdate(this.getTable());
+			stmt.executeUpdate("CREATE TABLE customer("
+					+ "ID INT PRIMARY KEY     NOT NULL,"
+					+ "NAME           TEXT    NOT NULL,"
+					+ "ADDRESS        CHAR(50));");
+			stmt.executeUpdate("INSERT INTO customer (ID, NAME, ADDRESS) VALUES (1, 'Alice', 'Hawaii'), (2, 'Bob', 'Japan');");
 			stmt.close();
 			connection.close();
 		} catch (SQLException e) {

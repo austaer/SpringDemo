@@ -1,9 +1,12 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.entities.Customer;
 import com.example.services.HelloService;
 
 //此類別為Spring Controller元件
@@ -20,7 +23,19 @@ public class HelloController {
 	@RequestMapping("/hello")
 	// 透過 @ResponseBody 告知Spring，此函數的回傳值是HTTP Response的本文
 	public @ResponseBody String hello() {
-		String welcome = helloService.getHelloByName("Bob");
-		return welcome;
+		List<Customer> customers = helloService.getHelloByName();
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i = 0; i < customers.size(); i++) {
+			sb.append("id: ");
+			sb.append(customers.get(i).getId());
+			sb.append("<br/>");
+			
+			sb.append("name: ");
+			sb.append(customers.get(i).getName());
+			sb.append("<br/>");
+			
+		}
+		return sb.toString();
 	}
 }

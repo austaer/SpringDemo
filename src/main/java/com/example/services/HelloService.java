@@ -1,5 +1,9 @@
 package com.example.services;
 
+import java.util.List;
+
+import com.example.entities.Customer;
+
 public interface HelloService {
-	public String getHelloByName(String name);
+	public List<Customer> getHelloByName();
 }
