@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DBConfig {
-	
+
 	@Bean
 	public DataSource dataSource() {
 		DataSourceBuilder builder = DataSourceBuilder.create();
